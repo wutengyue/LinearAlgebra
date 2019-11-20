@@ -1,8 +1,21 @@
 from playLA.Vector import Vector
+from collections.abc import Iterable, Iterator
 
 
 if __name__ == '__main__':
-    vector = Vector([1, 2, 3])
-    print(vector)
-    print(len(vector))
-    print(vector[0])
+    # vector = Vector([1, 2, 3])
+    vector = Vector(1)
+    # print(vector)
+    print(isinstance(vector, Iterable))
+    print(isinstance(vector, Iterator))
+    # print(dir(vector))
+    # exit()
+    # print(len(vector))
+    # print(vector[0])
+    # print('-'*10)
+    # v1 = Vector([1, 1])
+    # print(id(v1))
+    # print(v1 + Vector([2, 2]))
+    # exit()
+    for i in vector:
+        print(i)
