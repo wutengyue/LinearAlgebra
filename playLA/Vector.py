@@ -6,6 +6,11 @@ class Vector:
         """传入一个数组"""
         self._values = copy.deepcopy(lst)  # deep copy传值, 不影响原list
 
+    @classmethod
+    def zero(cls, dim):
+        """返回一个dim纬的零向量"""
+        return Vector([0] * dim)
+
     def __iter__(self):
         """返回向量的迭代器，使向量可迭代，支持for循环"""
         return self._values.__iter__()
