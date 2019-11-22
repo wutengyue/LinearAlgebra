@@ -19,7 +19,7 @@ class Vector:
         """向量加法，返回结果向量"""
         assert len(self) == len(other), "Error in adding. Length of vectors must be same."
 
-        return Vector([a + b for a, b in zip(self, other)])
+        return Vector([a + b for a, b in zip(self, other)])  # 定义了__iter__的类，为可迭代对象，支持zip, for操作；执行zip(self), for self时，会调用__iter__方法；len(self)同理
 
     def __sub__(self, other):
         """向量减法，返回结果向量"""

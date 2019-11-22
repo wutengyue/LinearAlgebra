@@ -6,10 +6,10 @@ if __name__ == '__main__':
     vector = Vector([1, 2, 3])
     # vector = Vector(1)
     # print(vector)
-    # print(isinstance(vector, Iterable))
-    # print(isinstance(vector, Iterator))
-    # for i in vector:
-    #     print(i)
+    print(isinstance(vector, Iterable))
+    print(isinstance(vector, Iterator))
+    for i in vector:
+        print(i)
     # print(dir(vector))
     # exit()
     # print(len(vector))
