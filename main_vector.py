@@ -25,6 +25,6 @@ if __name__ == '__main__':
     # print(-v1)
     # exit()
 
-    zero2 = Vector.zero(2)
+    zero2 = Vector.zero(2)  # 二维零向量
     print(zero2)
     print(v1 + zero2)
