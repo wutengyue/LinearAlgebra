@@ -34,10 +34,14 @@ if __name__ == '__main__':
     # print(Vector([3, 4]).norm())
     # print(vector.norm())
 
-    # 单位向量
-    print(vector.normalize())
-    print(vector.normalize().norm())
-    try:
-        print(Vector.zero(2).normalize())
-    except ZeroDivisionError as e:
-        print('Error:', e)
+    # # 单位向量
+    # print(vector.normalize())
+    # print(vector.normalize().norm())
+    # try:
+    #     print(Vector.zero(2).normalize())
+    # except ZeroDivisionError as e:
+    #     print('Error:', e)
+
+    # 向量点乘
+    print(vector.dot(vector))
+    print(vector.dot(Vector([1, 2])))

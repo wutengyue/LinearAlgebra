@@ -30,15 +30,18 @@ class Vector:
     def __add__(self, other):
         """向量加法，返回结果向量"""
         assert len(self) == len(other), "Error in adding. Length of vectors must be same."
-
         # 定义了__iter__的类，为可迭代对象，支持zip, for操作；执行zip(self), for self时，会调用__iter__方法；len(self)同理
         return Vector([a + b for a, b in zip(self, other)])
 
     def __sub__(self, other):
         """向量减法，返回结果向量"""
-        assert len(self) == len(other), "Error in adding. Length of vectors must be same."
-
+        assert len(self) == len(other), "Error in subtracting. Length of vectors must be same."
         return Vector([a - b for a, b in zip(self, other)])
+
+    def dot(self, another):
+        """向量点乘，返回结果标量"""
+        assert len(self) == len(another), 'Error in dot product. Length of vectors must be same.'
+        return sum([a * b for a, b in zip(self, another)])
 
     def __mul__(self, k):
         """数量乘法，返回self * k, 返回结果向量"""
@@ -49,8 +52,8 @@ class Vector:
 
     def __truediv__(self, k):
         """数量除法，self / k, 返回结果向量"""
-        # return 1/k * self
-        return self * 1/k
+        return 1 / k * self
+        # return self * 1/k  # 首先 self * 1 调用__mul__, 然后 /k，调用__truediv__, 然后执行self * 1...，无穷递归...
 
     def __pos__(self):
         """返回向量取正的结果向量"""
