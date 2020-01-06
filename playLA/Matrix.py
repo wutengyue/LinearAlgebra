@@ -42,11 +42,21 @@ class Matrix:
 
     __str__ = __repr__
 
+    def __add__(self, another):
+        """返回两个矩阵的加法结果"""
+        assert self.shape() == another.shape(), 'Error in adding. Shape of matrix must be same.'
+        return Matrix([
+            [a + b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())
+            ])
 
 if __name__ == '__main__':
     matrix = Matrix([[1, 2, 3], [4, 5, 6]])
-    print(matrix)
-    print(matrix.size())
-    print(matrix.shape())
-    print(len(matrix))
-    print(matrix[0, 0])
+    print('matrix', matrix)
+    # print(matrix.size())
+    # print(matrix.shape())
+    # print(len(matrix))
+    # print(matrix[0, 0])
+
+    matrix2 = Matrix([[1, 2, 3], [4, 5, 6]])
+    print('matrix2', matrix2)
+    print('add', matrix + matrix2)
