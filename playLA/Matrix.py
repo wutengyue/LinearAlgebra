@@ -5,6 +5,11 @@ class Matrix:
     def __init__(self, list2d):
         self._values = [row[:] for row in list2d]
 
+    @classmethod
+    def zero(cls, row_num, col_num):
+        """返回一个row_num行，col_num列的零矩阵"""
+        return Matrix([[0] * col_num] for i in range(row_num))
+
     def shape(self):
         """返回矩阵的形状: (行数，列数)"""
         return len(self._values), len(self._values[0])
@@ -49,14 +54,24 @@ class Matrix:
             [a + b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())
             ])
 
-if __name__ == '__main__':
-    matrix = Matrix([[1, 2, 3], [4, 5, 6]])
-    print('matrix', matrix)
-    # print(matrix.size())
-    # print(matrix.shape())
-    # print(len(matrix))
-    # print(matrix[0, 0])
+    def __sub__(self, another):
+        """返回两个矩阵的减法结果"""
+        assert self.shape() == another.shape(), 'Error in subtracting. Shape of matrix must be same.'
+        return Matrix([
+            [a - b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())
+        ])
 
-    matrix2 = Matrix([[1, 2, 3], [4, 5, 6]])
-    print('matrix2', matrix2)
-    print('add', matrix + matrix2)
+if __name__ == '__main__':
+    # matrix = Matrix([[1, 2, 3], [4, 5, 6]])
+    # print('matrix', matrix)
+    # # print(matrix.size())
+    # # print(matrix.shape())
+    # # print(len(matrix))
+    # # print(matrix[0, 0])
+
+    # matrix2 = Matrix([[1, 2, 3], [4, 5, 6]])
+    # print('matrix2', matrix2)
+    # print('add', matrix + matrix2)
+    # print('sub', matrix - matrix2)
+
+    print(Matrix.zero(3,4))
