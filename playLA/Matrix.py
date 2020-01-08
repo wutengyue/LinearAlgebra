@@ -52,7 +52,7 @@ class Matrix:
         assert self.shape() == another.shape(), 'Error in adding. Shape of matrix must be same.'
         return Matrix([
             [a + b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())
-            ])
+        ])
 
     def __sub__(self, another):
         """返回两个矩阵的减法结果"""
@@ -61,17 +61,45 @@ class Matrix:
             [a - b for a, b in zip(self.row_vector(i), another.row_vector(i))] for i in range(self.row_num())
         ])
 
+    def __mul__(self, k):
+        """返回矩阵数量乘结果，矩阵在左"""
+        return Matrix([
+            [e * k for e in self.row_vector(i)] for i in range(self.row_num())
+        ])
+
+    def __rmul__(self, k):
+        """返回矩阵的数量乘结果，矩阵在右"""
+        return self * k
+
+    def __truediv__(self, k):
+        """返回数量除法的结果矩阵"""
+        return self * (1/k)
+    
+    def __pos__(self):
+        """返回矩阵取正的结果"""
+        return self * 1
+
+    def __neg__(self):
+        """返回矩阵取负的结果"""
+        return self * -1
+
+
 if __name__ == '__main__':
-    # matrix = Matrix([[1, 2, 3], [4, 5, 6]])
-    # print('matrix', matrix)
-    # # print(matrix.size())
-    # # print(matrix.shape())
-    # # print(len(matrix))
-    # # print(matrix[0, 0])
+    matrix = Matrix([[1, 2, 3], [4, 5, 6]])
+    print('matrix', matrix)
+    # print(matrix.size())
+    # print(matrix.shape())
+    # print(len(matrix))
+    # print(matrix[0, 0])
+    # print(matrix * 2)
+    # print(3 * matrix)
+    # print(matrix / 2)
+    print(+matrix)
+    print(-matrix)
 
     # matrix2 = Matrix([[1, 2, 3], [4, 5, 6]])
     # print('matrix2', matrix2)
     # print('add', matrix + matrix2)
     # print('sub', matrix - matrix2)
 
-    print(Matrix.zero(3,4))
+    # print(Matrix.zero(3,4))
