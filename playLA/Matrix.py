@@ -83,6 +83,17 @@ class Matrix:
         """返回矩阵取负的结果"""
         return self * -1
 
+    def dot(self, another):
+        """返回矩阵乘法的结果"""
+        if isinstance(another, Vector):
+            assert self.col_num() == len(another), "Error in Matrix-Vector Multiplication, the col num of Matrix and the length of Vector must be same."
+            # return Vector([
+                # sum([a * b for a, b in zip(self.row_vector(i), another)]) for i in range(self.row_num())
+            # ])
+
+            return Vector([
+                self.row_vector(i).dot(another) for i in range(self.row_num())
+            ])
 
 if __name__ == '__main__':
     matrix = Matrix([[1, 2, 3], [4, 5, 6]])
@@ -94,8 +105,8 @@ if __name__ == '__main__':
     # print(matrix * 2)
     # print(3 * matrix)
     # print(matrix / 2)
-    print(+matrix)
-    print(-matrix)
+    # print(+matrix)
+    # print(-matrix)
 
     # matrix2 = Matrix([[1, 2, 3], [4, 5, 6]])
     # print('matrix2', matrix2)
@@ -103,3 +114,6 @@ if __name__ == '__main__':
     # print('sub', matrix - matrix2)
 
     # print(Matrix.zero(3,4))
+
+    vector = Vector([1, 2, 3])
+    print(matrix.dot(vector))
